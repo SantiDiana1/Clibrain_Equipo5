@@ -6,7 +6,7 @@ generate_text = pipeline(model="databricks/dolly-v2-3b", torch_dtype=torch.bfloa
 
 
 destinos = []
-
+c=0
 datos = "./Datos.csv"
 
 with open(datos, 'r') as archivo:
@@ -14,6 +14,10 @@ with open(datos, 'r') as archivo:
     
     for fila in lector_csv:
         destino = fila[1]
-        if fila[0] == 'Barcelona':
+        c=c+1
+        if fila[0] == 'Barcelona' and c<=7:
             destinos.append(destino)
+            if c==6:
+                destinos.append("y")
 
+destinos = ", ".join(destinos)
